@@ -160,7 +160,7 @@ const pw = new random.RandomPassword("keystorePw", {
 })
 
 const customKeyStore = new aws.kms.CustomKeyStore("customKeyStore", {
-    customKeyStoreName: "piers-customkeystore",
+    customKeyStoreName: "customkeystore",
     cloudHsmClusterId: hsmCluster.clusterId,
     keyStorePassword: pw.result,
     trustAnchorCertificate: std.fileOutput({input: "./dist/customerCA.crt"}).result
