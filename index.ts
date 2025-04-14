@@ -150,18 +150,18 @@ const awsRegion = awsConfig.get("region")
 export const ec2Ip = instance.publicIp
 export const clusterUrl = pulumi.interpolate`https://${awsRegion}.console.aws.amazon.com/cloudhsm/home?region=${awsRegion}#/clusters/${hsmCluster.clusterId}/hsms`
 
-const hsm2 = new aws.cloudhsmv2.Hsm("hsm2", {
-    subnetId: vpc.publicSubnetIds[1],
-    clusterId: hsmCluster.clusterId
-})
+// const hsm2 = new aws.cloudhsmv2.Hsm("hsm2", {
+//     subnetId: vpc.publicSubnetIds[1],
+//     clusterId: hsmCluster.clusterId
+// })
 
-const pw = new random.RandomPassword("keystorePw", {
-    length: 32
-})
+// const pw = new random.RandomPassword("keystorePw", {
+//     length: 32
+// })
 
-const customKeyStore = new aws.kms.CustomKeyStore("customKeyStore", {
-    customKeyStoreName: "customkeystore",
-    cloudHsmClusterId: hsmCluster.clusterId,
-    keyStorePassword: pw.result,
-    trustAnchorCertificate: std.fileOutput({input: "./dist/customerCA.crt"}).result
-}, {dependsOn: [hsm, hsm2]})
+// const customKeyStore = new aws.kms.CustomKeyStore("customKeyStore", {
+//     customKeyStoreName: "customkeystore",
+//     cloudHsmClusterId: hsmCluster.clusterId,
+//     keyStorePassword: pw.result,
+//     trustAnchorCertificate: std.fileOutput({input: "./dist/customerCA.crt"}).result
+// }, {dependsOn: [hsm, hsm2]})
